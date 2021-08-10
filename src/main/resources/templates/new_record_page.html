@@ -1,0 +1,31 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head> 
+    <title>New record page</title> 
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+    <form action="#" th:action="@{/book/add}" th:object="${book}" method="post">
+        <table>
+            <tr>
+                <td>Author</td>
+                <td><input type="text" th:field="*{author}" /></td>
+                <td th:if="${#fields.hasErrors('author')}" th:errors="*{author}">Author Error</td>
+            </tr>
+            <tr>
+                <td>Title</td>
+                <td><input type="text" th:field="*{title}" /></td>
+                <td th:if="${#fields.hasErrors('title')}" th:errors="*{title}">Title Error</td>
+            </tr>
+            <tr>
+                <td>ISBN</td>
+                <td><input type="number" th:field="*{isbn}" /></td>
+                <td th:if="${#fields.hasErrors('isbn')}" th:errors="*{isbn}">ISBN Error</td>
+            </tr>
+            <tr>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
+    </form>
+</body>
+</html>
