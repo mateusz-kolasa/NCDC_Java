@@ -23,4 +23,20 @@ public class BookService {
 		logger.info("Found {} books", books.size());
 		return bookRepository.findAll();
 	}
+	
+	public Book addBook(Book book) {
+		logger.info("Adding new book");		
+		if (isIsbnUnique(book)) {
+			logger.info("Book added successfuly");
+			logger.info(book.getAuthor());
+			return bookRepository.save(book);
+		}
+		
+		logger.info("Book isbn duplicate");
+		return null;
+	}
+	
+	public boolean isIsbnUnique(Book book) {
+		return bookRepository.findById(book.getIsbn()).isEmpty();
+	}
 }
